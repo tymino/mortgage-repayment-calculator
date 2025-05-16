@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import customInput from './components/custom-input.vue'
 </script>
 
 <template>
-  <div>
-    
+  <div class="container">
+    <custom-input />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
