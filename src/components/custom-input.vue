@@ -1,31 +1,33 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { usePayStore } from '../stores/usePayStore'
-
-const store = usePayStore()
+import type { IInput } from '../types/IInput'
 
 interface Props {
-  label: string
-  placeholder: string
-  value: string
-  type: string
-  name: string
+  data: IInput
 }
 
-// defineProps<Props>()
+const props = defineProps<Props>()
+const emit = defineEmits(['update:dataInput'])
 
-const number = computed({
-  get: () => store.amount,
-  set: (val) => store.setAmount(val),
-})
+function updateInput(event: Event) {
+  emit('update:dataInput', {
+    name: props.data.name,
+    value: (event.target as HTMLInputElement).value,
+  })
+}
 </script>
 
 <template>
   <div class="custom-input">
     <label class="custom-input__label">
-      <span class="custom-input__text">Label</span>
-      <input type="number" v-model="number" placeholder="Введите цифры" />
-      <p>Значение: {{ number }}</p>
+      <span class="custom-input__text">{{ data.label }}</span>
+      <input
+        class="custom-input__imput"
+        type="number"
+        :value="data.value"
+        @input="updateInput"
+        :name="data.name"
+      />
+      <p>Значение: {{ data }}</p>
     </label>
   </div>
 </template>
