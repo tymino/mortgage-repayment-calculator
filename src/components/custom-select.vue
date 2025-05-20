@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import customTexts from './custom-text.vue'
+
 import { usePayStore } from '../stores/usePayStore'
 
 const store = usePayStore()
@@ -6,7 +8,9 @@ const store = usePayStore()
 
 <template>
   <div class="custom-select">
-    <p class="custom-select__main-label">{{ store.type.label }}</p>
+    <custom-texts type="label" :is-visible="true">
+      {{ store.type.label }}
+    </custom-texts>
     <div
       class="custom-select__container"
       v-for="item in store.type.names"
@@ -21,6 +25,9 @@ const store = usePayStore()
       />
       <label class="custom-select__label" :for="item">{{ item }}</label>
     </div>
+    <custom-texts type="error" :is-visible="store.type.error">
+      {{ store.type.errorText }}
+    </custom-texts>
   </div>
 </template>
 

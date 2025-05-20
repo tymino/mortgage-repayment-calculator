@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import customTexts from './custom-text.vue'
+
 import type { IInput } from '../types/IInput'
 
 interface Props {
@@ -18,17 +20,25 @@ function updateInput(event: Event) {
 
 <template>
   <div class="custom-input">
-    <label class="custom-input__label">
-      <span class="custom-input__text">{{ data.label }}</span>
-      <input
-        class="custom-input__imput"
-        type="number"
-        :value="data.value"
-        @input="updateInput"
-        :name="data.name"
-      />
-      <p>Значение: {{ data }}</p>
-    </label>
+    <custom-texts type="label" :is-visible="true">
+      <div>
+        <label :for="data.name">{{ data.label }}</label>
+        <div>
+          <label :for="data.name">{{ data.mark }}</label>
+          <input
+            class="custom-input__imput"
+            :id="data.name"
+            type="number"
+            :name="data.name"
+            :value="data.value"
+            @input="updateInput"
+          />
+        </div>
+      </div>
+    </custom-texts>
+    <custom-texts type="error" :is-visible="data.error">
+      {{ data.errorText }}
+    </custom-texts>
   </div>
 </template>
 
