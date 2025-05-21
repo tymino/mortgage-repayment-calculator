@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import customTexts from './custom-text.vue'
 
-import { usePayStore } from '../stores/usePayStore'
+import { usePayStore } from '../../stores/usePayStore'
 
 const store = usePayStore()
 </script>

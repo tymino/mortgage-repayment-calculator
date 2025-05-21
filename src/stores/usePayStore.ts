@@ -50,5 +50,8 @@ export const usePayStore = defineStore('pay', {
     setTypeValue(value: string) {
       this.type.value = value
     },
+    getResult() {
+      console.log('test')
+    },
   },
 })

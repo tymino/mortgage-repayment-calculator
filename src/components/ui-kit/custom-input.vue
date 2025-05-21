@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import customTexts from './custom-text.vue'
 
-import type { IInput } from '../types/IInput'
+import type { IInput } from '../../types/IInput'
 
 interface Props {
   data: IInput
