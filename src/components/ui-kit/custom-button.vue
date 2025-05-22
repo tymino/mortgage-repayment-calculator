@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface Props {
   type: 'primary' | 'link'
+  text?: string
 }
 
 defineProps<Props>()
@@ -9,7 +10,7 @@ defineProps<Props>()
 <template>
   <button type="button" class="custom-button" :class="[type]">
     <slot></slot>
-    <p>calculate repayments</p>
+    <p>{{ text }}</p>
   </button>
 </template>
 
@@ -21,10 +22,37 @@ defineProps<Props>()
   background: none;
   border: none;
   cursor: pointer;
-  border: 1px solid var(--c-primary-500);
+  border: none;
+  text-transform: capitalize;
+  transition: all ease 0.3s;
 
   & *:not(:last-child) {
     margin-right: 10px;
+  }
+
+  &.primary {
+    padding: 6px 24px;
+    background: var(--c-accent);
+    border-radius: 20px;
+    color: var(--c-primary-900);
+    font-size: 1.1rem;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-700);
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &.link {
+    color: var(--c-primary-700);
+    font-size: 1rem;
+    font-weight: var(--font-weight-700);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--c-primary-900);
+    }
   }
 }
 </style>

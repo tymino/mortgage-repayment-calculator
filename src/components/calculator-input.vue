@@ -27,12 +27,12 @@ const interestRate = computed({
 
 <template>
   <div class="calculator-input">
-    <div class="header">
+    <div class="title">
       <custom-text type="header" :is-visible="true">
         mortgage calculator
       </custom-text>
 
-      <custom-button type="link">clear all</custom-button>
+      <custom-button type="link" text="clear all" />
     </div>
     <div class="body">
       <custom-input
@@ -56,7 +56,12 @@ const interestRate = computed({
 
       <custom-select class="type" />
 
-      <custom-button class="button" type="primary" @click="store.getResult">
+      <custom-button
+        class="button"
+        type="primary"
+        text="calculate repayments"
+        @click="store.getResult"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -74,4 +79,34 @@ const interestRate = computed({
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.calculator-input {
+  width: 400px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.body {
+  .input-amount {
+  }
+
+  .wrapper {
+    .term {
+    }
+
+    .rate {
+    }
+  }
+
+  .type {
+  }
+
+  .button {
+  }
+}
+</style>

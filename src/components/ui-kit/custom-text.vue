@@ -25,6 +25,7 @@ defineProps<Props>()
   &.header {
     color: var(--c-primary-900);
     font-size: 1.6rem;
+    line-height: 1.4rem;
     font-weight: var(--font-weight-700);
   }
 
