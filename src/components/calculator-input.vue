@@ -37,18 +37,21 @@ const interestRate = computed({
     <div class="body">
       <custom-input
         class="input-amount"
+        :is-reverse="true"
         :data="store.inputs.amount"
         v-model:data-input="amount"
       />
       <div class="wrapper">
         <custom-input
           class="term"
+          :is-reverse="false"
           :data="store.inputs.term"
           v-model:data-input="term"
         />
 
         <custom-input
           class="rate"
+          :is-reverse="false"
           :data="store.inputs['interest rate']"
           v-model:data-input="interestRate"
         />
@@ -92,15 +95,19 @@ const interestRate = computed({
 }
 
 .body {
-  .input-amount {
-  }
+  // .input-amount {
+  // }
 
   .wrapper {
-    .term {
-    }
+    display: flex;
+    gap: 1rem;
+    margin: 14px 0;
 
-    .rate {
-    }
+    // .term {
+    // }
+
+    // .rate {
+    // }
   }
 
   .type {

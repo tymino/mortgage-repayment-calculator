@@ -10,7 +10,7 @@ export const usePayStore = defineStore('pay', {
         label: 'mortgage amount',
         value: '',
         mark: '£',
-        error: false,
+        error: true,
         errorText: 'This field is required',
       },
       term: {
