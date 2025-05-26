@@ -85,6 +85,7 @@ const interestRate = computed({
 <style lang="scss" scoped>
 .calculator-input {
   width: 400px;
+  padding: 24px;
 }
 
 .title {
