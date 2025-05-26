@@ -101,7 +101,7 @@ const interestRate = computed({
   .wrapper {
     display: flex;
     gap: 1rem;
-    margin: 14px 0;
+    margin: 8px 0;
 
     // .term {
     // }
@@ -110,10 +110,10 @@ const interestRate = computed({
     // }
   }
 
-  .type {
-  }
+  // .type {
+  // }
 
-  .button {
-  }
+  // .button {
+  // }
 }
 </style>

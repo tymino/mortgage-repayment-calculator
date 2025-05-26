@@ -31,4 +31,61 @@ const store = usePayStore()
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.custom-select {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border: 1px solid var(--c-primary-500);
+    border-radius: var(--border-radius-items);
+
+    &:has(.custom-select__input:checked) {
+      border: 1px solid var(--c-accent);
+      background-color: var(--c-accent-opacity);
+    }
+  }
+
+  &__input {
+    appearance: none;
+    width: 19px;
+    height: 18px;
+    border: 1px solid var(--c-primary-500);
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:checked {
+      position: relative;
+      border: 1px solid var(--c-accent);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: var(--c-accent);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &__label {
+    width: 100%;
+    padding: 10px 0 10px 8px;
+    color: var(--c-primary-900);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-700);
+    text-transform: capitalize;
+    cursor: pointer;
+    user-select: none;
+  }
+}
+</style>
