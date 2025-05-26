@@ -8,7 +8,7 @@ export const usePayStore = defineStore('pay', {
         id: 0,
         name: 'amount',
         label: 'mortgage amount',
-        value: '',
+        value: '300000',
         mark: '£',
         error: true,
         errorText: 'This field is required',
@@ -17,7 +17,7 @@ export const usePayStore = defineStore('pay', {
         id: 1,
         name: 'term',
         label: 'mortgage term',
-        value: '',
+        value: '25',
         mark: 'years',
         error: false,
         errorText: 'This field is required',
@@ -26,7 +26,7 @@ export const usePayStore = defineStore('pay', {
         id: 2,
         name: 'interest rate',
         label: 'mortgage rate',
-        value: '',
+        value: '5.25',
         mark: '%',
         error: false,
         errorText: 'This field is required',
@@ -40,7 +40,11 @@ export const usePayStore = defineStore('pay', {
       errorText: 'This field is required',
     },
   }),
-
+  getters: {
+    amountNum: (state) => Number(state.inputs.amount.value),
+    termNum: (state) => Number(state.inputs.term.value),
+    rateNum: (state) => Number(state.inputs['interest rate'].value),
+  },
   actions: {
     setInputValue(data: IInput) {
       const key = data.name as 'amount' | 'term' | 'interest rate'
@@ -50,8 +54,55 @@ export const usePayStore = defineStore('pay', {
     setTypeValue(value: string) {
       this.type.value = value
     },
+    checkValues() {
+      if (
+        this.amountNum < 0 ||
+        this.termNum <= 0 ||
+        this.rateNum < 0 ||
+        this.type.value === ''
+      ) {
+        return false
+      }
+
+      return true
+    },
+    calculateMortgage() {
+      let monthlyPayment = 0
+
+      if (this.type.value === 'repayment') {
+        const monthlyInterestRate = this.rateNum / 12 / 100
+        const numberOfPayments = this.termNum * 12
+
+        monthlyPayment =
+          (this.amountNum *
+            monthlyInterestRate *
+            Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+          (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1)
+      } else if (this.type.value === 'interest only') {
+        monthlyPayment = (this.amountNum * (this.rateNum / 100)) / 12
+      }
+
+      const monthlyPaymentFormatted = monthlyPayment.toFixed(2)
+      const totalRepayOverTheTerm = (
+        monthlyPayment *
+        this.termNum *
+        12
+      ).toFixed(2)
+
+      const formattedMonthlyPayment = new Intl.NumberFormat('en-US').format(
+        Number(monthlyPaymentFormatted),
+      )
+      const formattedTotalRepay = new Intl.NumberFormat('en-US').format(
+        Number(totalRepayOverTheTerm),
+      )
+
+      return [formattedMonthlyPayment, formattedTotalRepay]
+    },
     getResult() {
-      console.log('test')
+      if (this.checkValues()) {
+        console.log('getResult', this.calculateMortgage())
+        return this.calculateMortgage()
+      }
     },
   },
 })
