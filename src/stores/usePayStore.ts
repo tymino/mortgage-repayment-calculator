@@ -8,16 +8,16 @@ export const usePayStore = defineStore('pay', {
         id: 0,
         name: 'amount',
         label: 'mortgage amount',
-        value: '300000',
+        value: '1000',
         mark: '£',
-        error: true,
+        error: false,
         errorText: 'This field is required',
       },
       term: {
         id: 1,
         name: 'term',
         label: 'mortgage term',
-        value: '25',
+        value: '10',
         mark: 'years',
         error: false,
         errorText: 'This field is required',
@@ -26,7 +26,7 @@ export const usePayStore = defineStore('pay', {
         id: 2,
         name: 'interest rate',
         label: 'mortgage rate',
-        value: '5.25',
+        value: '',
         mark: '%',
         error: false,
         errorText: 'This field is required',
@@ -49,9 +49,26 @@ export const usePayStore = defineStore('pay', {
     amountNum: (state) => Number(state.inputs.amount.value),
     markPrice: (state) => state.inputs.amount.mark,
     termNum: (state) => Number(state.inputs.term.value),
-    rateNum: (state) => Number(state.inputs['interest rate'].value),
+    rateNum: (state) =>
+      state.inputs['interest rate'].value === ''
+        ? 0.000000001
+        : Number(state.inputs['interest rate'].value),
   },
   actions: {
+    clearErrors() {
+      this.inputs.amount.error = false
+      this.inputs.term.error = false
+      this.inputs['interest rate'].error = false
+      this.type.error = false
+    },
+    clearAll() {
+      this.clearErrors()
+      this.inputs.amount.value = ''
+      this.inputs.term.value = ''
+      this.inputs['interest rate'].value = ''
+      this.type.value = ''
+      this.result.isShowResultTab = false
+    },
     setInputValue(data: IInput) {
       const key = data.name as 'amount' | 'term' | 'interest rate'
 
@@ -60,20 +77,29 @@ export const usePayStore = defineStore('pay', {
     setTypeValue(value: string) {
       this.type.value = value
     },
-    checkValues() {
-      if (
-        this.amountNum < 0 ||
-        this.termNum <= 0 ||
-        this.rateNum < 0 ||
-        this.type.value === ''
-      ) {
-        return false
+    checkValidValues() {
+      this.clearErrors()
+
+      let isValid = true
+
+      if (this.amountNum < 1) {
+        this.inputs.amount.error = true
+        isValid = false
+      }
+      if (this.termNum <= 0) {
+        this.inputs.term.error = true
+        isValid = false
+      }
+      if (this.rateNum < 0) {
+        this.inputs['interest rate'].error = true
+        isValid = false
+      }
+      if (this.type.value === '') {
+        this.type.error = true
+        isValid = false
       }
 
-      return true
-    },
-    getMark(value: string) {
-      return `${this.markPrice}${value}`
+      return isValid
     },
     calculateMortgage() {
       let monthlyPayment = 0
@@ -106,14 +132,24 @@ export const usePayStore = defineStore('pay', {
         Number(totalRepayOverTheTerm),
       )
 
-      this.result.monthlyPayment = this.getMark(formattedMonthlyPayment)
-      this.result.totalRepay = this.getMark(formattedTotalRepay)
+      console.log(this.rateNum, this.termNum)
+
+      this.result.monthlyPayment = this.getMarkWithValue(
+        formattedMonthlyPayment,
+      )
+      this.result.totalRepay = this.getMarkWithValue(formattedTotalRepay)
       this.result.isShowResultTab = true
     },
+    getMarkWithValue(value: string) {
+      return `${this.markPrice}${value}`
+    },
     getResult() {
-      if (this.checkValues()) {
-        console.log('getResult', this.calculateMortgage())
-        return this.calculateMortgage()
+      if (this.checkValidValues()) {
+        const result = this.calculateMortgage()
+
+        console.log('getResult', result)
+
+        return result
       }
     },
   },

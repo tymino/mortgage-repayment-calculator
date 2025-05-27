@@ -32,7 +32,7 @@ const interestRate = computed({
         mortgage calculator
       </custom-text>
 
-      <custom-button type="link" text="clear all" />
+      <custom-button type="link" text="clear all" @click="store.clearAll" />
     </div>
     <div class="body">
       <custom-input
@@ -114,7 +114,8 @@ const interestRate = computed({
   // .type {
   // }
 
-  // .button {
-  // }
+  .button {
+    margin-top: 20px;
+  }
 }
 </style>
