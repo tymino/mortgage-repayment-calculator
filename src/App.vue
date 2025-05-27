@@ -1,15 +1,23 @@
 <script setup lang="ts">
+import { usePayStore } from './stores/usePayStore'
+
 import calculatorInput from './components/calculator-input.vue'
 import calculatorIcon from './components/calculator-icon.vue'
 import calculatorTotal from './components/calculator-total.vue'
+
+const store = usePayStore()
 </script>
 
 <template>
   <div class="main-container">
     <calculator-input />
     <div class="result-container">
-      <!-- <calculator-icon /> -->
-      <calculator-total month-value="$200" total-value="$1000" />
+      <calculator-total
+        v-if="store.result.isShowResultTab"
+        :month-value="store.result.monthlyPayment"
+        :total-value="store.result.totalRepay"
+      />
+      <calculator-icon v-else />
     </div>
   </div>
 </template>

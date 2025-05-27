@@ -39,9 +39,15 @@ export const usePayStore = defineStore('pay', {
       error: false,
       errorText: 'This field is required',
     },
+    result: {
+      isShowResultTab: false,
+      monthlyPayment: '',
+      totalRepay: '',
+    },
   }),
   getters: {
     amountNum: (state) => Number(state.inputs.amount.value),
+    markPrice: (state) => state.inputs.amount.mark,
     termNum: (state) => Number(state.inputs.term.value),
     rateNum: (state) => Number(state.inputs['interest rate'].value),
   },
@@ -65,6 +71,9 @@ export const usePayStore = defineStore('pay', {
       }
 
       return true
+    },
+    getMark(value: string) {
+      return `${this.markPrice}${value}`
     },
     calculateMortgage() {
       let monthlyPayment = 0
@@ -92,11 +101,14 @@ export const usePayStore = defineStore('pay', {
       const formattedMonthlyPayment = new Intl.NumberFormat('en-US').format(
         Number(monthlyPaymentFormatted),
       )
+
       const formattedTotalRepay = new Intl.NumberFormat('en-US').format(
         Number(totalRepayOverTheTerm),
       )
 
-      return [formattedMonthlyPayment, formattedTotalRepay]
+      this.result.monthlyPayment = this.getMark(formattedMonthlyPayment)
+      this.result.totalRepay = this.getMark(formattedTotalRepay)
+      this.result.isShowResultTab = true
     },
     getResult() {
       if (this.checkValues()) {
