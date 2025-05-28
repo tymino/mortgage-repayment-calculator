@@ -55,4 +55,16 @@ defineProps<Props>()
     }
   }
 }
+
+@media (max-width: 340px) {
+  .custom-button {
+    &.primary {
+      font-size: 0.9rem;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
 </style>

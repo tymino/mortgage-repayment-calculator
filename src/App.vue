@@ -35,4 +35,27 @@ const store = usePayStore()
   border-radius: 0 var(--border-radius) var(--border-radius)
     calc(var(--border-radius) * 4);
 }
+
+@media (max-width: 840px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .result-container {
+    max-width: 420px;
+    background-color: var(--c-primary-900);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+  }
+}
+
+@media (max-width: 450px) {
+  .main-container {
+    width: 100%;
+  }
+
+  .result-container {
+    max-width: 450px;
+    border-radius: 0;
+  }
+}
 </style>

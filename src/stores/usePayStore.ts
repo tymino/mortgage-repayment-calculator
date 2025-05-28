@@ -132,8 +132,6 @@ export const usePayStore = defineStore('pay', {
         Number(totalRepayOverTheTerm),
       )
 
-      console.log(this.rateNum, this.termNum)
-
       this.result.monthlyPayment = this.getMarkWithValue(
         formattedMonthlyPayment,
       )
@@ -146,8 +144,6 @@ export const usePayStore = defineStore('pay', {
     getResult() {
       if (this.checkValidValues()) {
         const result = this.calculateMortgage()
-
-        console.log('getResult', result)
 
         return result
       }

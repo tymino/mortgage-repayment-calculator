@@ -40,3 +40,9 @@ body {
   height: 100vh;
   background: var(--c-primary-100);
 }
+
+@media (max-width: 450px) {
+  body {
+    height: 100%;
+  }
+}

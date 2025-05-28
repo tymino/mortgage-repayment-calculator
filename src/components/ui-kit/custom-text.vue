@@ -41,4 +41,12 @@ defineProps<Props>()
     font-weight: var(--font-weight-500);
   }
 }
+
+@media (max-width: 450px) {
+  .custom-text {
+    &.header {
+      font-size: 1.4rem;
+    }
+  }
+}
 </style>

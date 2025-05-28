@@ -211,9 +211,6 @@
 }
 
 .calculator {
-  // &-icon {
-  // }
-
   &-title {
     color: var(--c-primary);
     font-size: 1.4rem;
@@ -226,6 +223,22 @@
     font-size: 0.9rem;
     font-weight: var(--font-weight-500);
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .calculator {
+    &-icon {
+      width: 160px;
+    }
+
+    &-title {
+      font-size: 1.2rem;
+    }
+
+    &-describe {
+      font-size: 0.84rem;
+    }
   }
 }
 </style>

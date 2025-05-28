@@ -32,7 +32,12 @@ const interestRate = computed({
         mortgage calculator
       </custom-text>
 
-      <custom-button type="link" text="clear all" @click="store.clearAll" />
+      <custom-button
+        class="title__link"
+        type="link"
+        text="clear all"
+        @click="store.clearAll"
+      />
     </div>
     <div class="body">
       <custom-input
@@ -92,30 +97,49 @@ const interestRate = computed({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 36px;
 }
 
 .body {
-  // .input-amount {
-  // }
-
   .wrapper {
     display: flex;
-    gap: 1rem;
+    gap: 14px;
     margin: 8px 0;
-
-    // .term {
-    // }
-
-    // .rate {
-    // }
   }
-
-  // .type {
-  // }
 
   .button {
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 840px) {
+  .calculator-input {
+    padding: 24px 16px;
+  }
+
+  .button {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .calculator-input {
+    width: 100%;
+  }
+
+  .title {
+    flex-direction: column;
+    align-items: start;
+
+    &__link {
+      margin-top: 14px;
+    }
+  }
+
+  .body {
+    .wrapper {
+      flex-direction: column;
+    }
   }
 }
 </style>
