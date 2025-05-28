@@ -105,11 +105,11 @@ function updateInput(event: Event) {
 
 .label-mark {
   padding: 0 14px;
-  font-size: 14px;
   background: var(--c-primary-100);
   color: var(--c-primary-700);
-  font-weight: var(--font-weight-700);
+  font-size: 14px;
   line-height: 40px;
+  font-weight: var(--font-weight-700);
   cursor: pointer;
 
   &.error {

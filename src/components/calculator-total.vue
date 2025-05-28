@@ -28,23 +28,23 @@ defineProps<IProps>()
 .calculator-total {
   display: flex;
   flex-direction: column;
-  padding: 24px;
   height: 100%;
+  padding: 24px;
 }
 
 .total {
   &__title {
+    margin-bottom: 10px;
     color: var(--c-primary);
     font-size: 1.4rem;
     font-weight: var(--font-weight-700);
-    margin-bottom: 10px;
   }
 
   &__describe {
+    margin-bottom: 34px;
     color: var(--c-primary-300);
     font-size: 0.9rem;
     font-weight: var(--font-weight-500);
-    margin-bottom: 34px;
   }
 
   &__wrapper-result {
@@ -65,10 +65,10 @@ defineProps<IProps>()
 
   &__month-value {
     padding-bottom: 20px;
+    border-bottom: 1px solid var(--c-primary-700);
     color: var(--c-accent);
     font-size: 2.6rem;
     font-weight: var(--font-weight-700);
-    border-bottom: 1px solid var(--c-primary-700);
   }
 
   &__total-label {

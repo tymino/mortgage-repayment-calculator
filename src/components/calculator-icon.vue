@@ -205,24 +205,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px;
   height: 100%;
+  padding: 24px;
   text-align: center;
 }
 
 .calculator {
   &-title {
+    margin-bottom: 10px;
     color: var(--c-primary);
     font-size: 1.4rem;
     font-weight: var(--font-weight-700);
-    margin-bottom: 10px;
   }
 
   &-describe {
+    margin-bottom: 10px;
     color: var(--c-primary-300);
     font-size: 0.9rem;
     font-weight: var(--font-weight-500);
-    margin-bottom: 10px;
   }
 }
 

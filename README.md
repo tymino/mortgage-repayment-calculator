@@ -6,4 +6,5 @@ This is a solution to the [Mortgage repayment calculator challenge on Frontend M
 
 - Vue 3
 - TypeScript
+- Pinia
 - Vite

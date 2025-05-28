@@ -21,10 +21,9 @@ defineProps<Props>()
   align-items: center;
   background: none;
   border: none;
-  cursor: pointer;
-  border: none;
   text-transform: capitalize;
   transition: all ease 0.3s;
+  cursor: pointer;
 
   & *:not(:last-child) {
     margin-right: 10px;
@@ -35,8 +34,8 @@ defineProps<Props>()
     background: var(--c-accent);
     border-radius: 20px;
     color: var(--c-primary-900);
-    font-size: 1.1rem;
     font-family: var(--font-family);
+    font-size: 1.1rem;
     font-weight: var(--font-weight-700);
 
     &:hover {

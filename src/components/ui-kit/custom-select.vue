@@ -45,8 +45,8 @@ const store = usePayStore()
     border-radius: var(--border-radius-items);
 
     &:has(.custom-select__input:checked) {
-      border: 1px solid var(--c-accent);
       background-color: var(--c-accent-opacity);
+      border: 1px solid var(--c-accent);
     }
 
     &:hover {

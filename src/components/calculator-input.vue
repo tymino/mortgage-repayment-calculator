@@ -103,8 +103,8 @@ const interestRate = computed({
 .body {
   .wrapper {
     display: flex;
-    gap: 14px;
     margin: 8px 0;
+    gap: 14px;
   }
 
   .button {
