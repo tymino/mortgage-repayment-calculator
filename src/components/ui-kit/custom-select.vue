@@ -48,6 +48,10 @@ const store = usePayStore()
       border: 1px solid var(--c-accent);
       background-color: var(--c-accent-opacity);
     }
+
+    &:hover {
+      border-color: var(--c-accent);
+    }
   }
 
   &__input {
